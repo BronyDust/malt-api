@@ -1,13 +1,15 @@
 <?
 header("Access-Control-Allow-Origin: *");
+
 if (isset($_GET['mode'])) {
 	switch ($_GET['mode']) {
 		case 'list':
+			$list = json_encode(getAllAsList());
 			$json = array(
 				'action' => 'task-done',
-				'list' => getAllAsList();
+				'list' => $list
 			);
-			echo json_encode($json, 2);
+			echo json_encode($json);
 			break;
 		case 'get':
 			if (isset($_GET['type'])) {
